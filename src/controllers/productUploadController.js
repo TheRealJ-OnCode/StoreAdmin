@@ -1,4 +1,4 @@
-const { uuid } = require('uuidv4');
+const { v4: uuidv4 } = require('uuid');
 const productModel = require('../db/models/product.model.js');
 const { saveBarcodesToMongo } = require('../helpers/barcodeManagement/saveBarcodesToMongo.js');
 const Response = require('../utils/Response.class.js');
@@ -7,7 +7,7 @@ const uploadProductController = async (req, res) => {
 
         try {
                 const { product_barcodes} = product;
-                const pid = uuid();
+                const pid = uuidv4();
                 product.pid = pid;
                 const { barcodeIds } = await saveBarcodesToMongo(product_barcodes);
 
