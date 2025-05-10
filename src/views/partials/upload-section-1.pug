@@ -1,0 +1,30 @@
+section 
+    label Məhsul Adı
+    input.product-i-i(type="text" name="product_name" autocomplete="off" )
+    label Məhsul Sayı
+    input.product-i-i(type="text" name="product_count" autocomplete="off" ).numeric-input#number-of-product
+    label Məhsul Təsviri
+    input.product-i-i(type="text" name="product_description" autocomplete="off" )
+    label Məhsul Alış Qiyməti
+    input.product-i-i(type="text" name="product_purchase_price" autocomplete="off" ).numeric-input
+    label Məhsul Satış Qiyməti
+    input.product-i-i(type="text" name="product_sales_price" autocomplete="off" ).numeric-input
+    #checkbox-container
+        input(type="checkbox" id="productHaveVarieties")
+        label(for="productHaveVarieties") Məhsulun alternativleri mövcuddur
+    #varieties-container
+        label(for="varietieUnit") Məhsul fərqlənmə vahidi
+        input#varietieUnit
+        .d-flex.sub-container
+            .input-label-container
+                label(for="varietieValue") Dəyəri
+                input#varietieValue
+            .input-label-container
+                label(for="varietiePrice") Qiyməti
+                .d-flex.a-i-center
+                    input#varietiePrice.numeric-input
+                    span azn
+            .input-label-container
+                label(for="varietieCount") Sayı
+                input#varietieCount.numeric-input
+        button#add-varietie Əlavə et

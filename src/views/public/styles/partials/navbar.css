@@ -1,0 +1,25 @@
+header {
+    height: 50px;
+    width: 100%;
+    border-bottom: 2px solid #000;
+
+    nav {
+        height: 100%;
+
+        ul {
+            display: flex;
+
+            li {
+                padding: 10px;
+                text-decoration: none;
+                list-style-type: none;
+
+                a {
+                    color: #000;
+                    font-weight: bold;
+                    font-size: 1.1rem;
+                }
+            }
+        }
+    }
+}

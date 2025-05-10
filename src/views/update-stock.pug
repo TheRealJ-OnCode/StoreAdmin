@@ -1,0 +1,82 @@
+doctype html
+html(lang="tr")
+  head
+    meta(charset="UTF-8")
+    title Ürün Stok Güncelleme
+    link(rel="stylesheet", href="/styles/components/navbar.css")
+    link(rel="stylesheet", href="/styles/update-stock.css")
+
+  body
+    <nav class="navbar">
+        <a href="/">Ana Səhifə</a>
+        <a href="/orders">Sifarişlər</a>
+        <a href="/products">Məhsullar</a>
+        //- <a href="/stock-control">Stok Kontrol</a>
+    </nav> 
+    .container
+      h2 Məhsul Stok Yeniləmə
+
+      // Ürün bilgilerini gösteriyoruz (backend'den gönderilen product değişkeni)
+      #product-info
+        h4= product.product_name
+        p
+          strong Qiymət:
+          |  #{product.product_sales_price} Azn
+        p
+          strong Ümümi Stok:
+          |  #{product.product_count}
+
+      // Stok güncelleme formu (action URL'sinde product_id parametresini backend'den alıyoruz)
+      form#stock-form(action=`/stock/update?product_id=${product._id}` method="POST")
+        if product.product_alternatives && product.product_alternatives.length > 0
+          h5 Alternatifler
+          each alt in product.product_alternatives
+            .form-group
+              label(for="alternative-" + alt.key)= alt.value + " (Stokdaki: " + (alt.count || 0) + ")"
+              input(type="number", name="alternative_" + alt.key, placeholder="Eklenecek stok", value="0")
+        else
+          .form-group#single-input
+            label(for="stock-count") Stok Əlavə et
+            input#stock-count(type="number", name="count", placeholder="Eklenecek stok miktarı", value="0")
+        button(type="submit") Yenilə
+
+      #message
+
+    script.
+      // Form gönderildiğinde stok güncelleme isteği gönderiyoruz.
+      document.getElementById('stock-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        var form = e.target;
+        var actionUrl = form.getAttribute('action');
+        var payload = {};
+
+        // Varyant bilgileri varsa
+        var alternativeInputs = document.querySelectorAll('[name^="alternative_"]');
+        if (alternativeInputs.length > 0) {
+          payload.alternatives = [];
+          alternativeInputs.forEach(function(input) {
+            var key = input.name.replace('alternative_', '');
+            var count = parseInt(input.value, 10) || 0;
+            payload.alternatives.push({ key: key, count: count });
+          });
+        } else {
+          var count = parseInt(document.getElementById('stock-count').value, 10) || 0;
+          payload.count = count;
+        }
+        
+        fetch(actionUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+        .then(function(response) { return response.json(); })
+        .then(function(data) {
+          var msgClass = data.message ? 'alert-info' : 'alert-danger';
+          document.getElementById('message').innerHTML = '<div class="alert ' + msgClass + '">' + (data.message || 'Bir hata oluştu.') + '</div>';
+          window.location.reload();
+        })
+        .catch(function(err) {
+          console.error(err);
+          document.getElementById('message').innerHTML = '<div class="alert alert-danger">Stok güncellenirken hata oluştu.</div>';
+        });
+      });

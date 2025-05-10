@@ -1,0 +1,25 @@
+#alert-container {
+    width: 100%;
+    padding: 5px 0;
+    position: relative;
+    z-index: 21;
+}
+#alert-container.danger {
+    background-color: #f44336;
+}
+#alert-container.success {
+    background-color: #04AA6D;
+}
+#alert-container.info {
+    background-color: #2196F3;
+}
+#alert-container.warning {
+    background-color: #ff9800;
+}
+.message-section {
+    color: #fff;
+    text-align: center;
+    line-height: 50px;
+    font-size: 1.1rem;
+    font-weight: bold;
+}

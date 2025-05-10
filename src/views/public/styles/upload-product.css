@@ -1,0 +1,150 @@
+body {
+    background: #ddd;
+}
+main {
+    margin: 30px 0 0 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 30px;
+}
+main section {
+    display: flex;
+    flex-direction: column;
+}
+main section input, main section select {
+    margin: 5px;
+    width: 300px;
+    height: 30px;
+}
+main section input {
+    font-size: 1.1rem;
+    padding: 5px 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
+}
+#checkbox-container {
+    display: flex;
+}
+#checkbox-container > label {
+    cursor: pointer;
+    font-weight: bold;
+    font-style: italic;
+}
+#checkbox-container input {
+    height: 15px;
+    width: auto;
+    cursor: pointer;
+}
+
+#varieties-container {
+    display: none;
+    flex-direction: column;
+}
+#varieties-menu-container {
+    display: none;
+}
+.sub-container input {
+    width: 80px;
+    font-size: .9rem;
+}
+.input-label-container {
+    display: flex;
+    flex-direction: column;
+
+}
+.input-label-container:not(:first-child) {
+    margin-left: 15px;
+}
+#barcodes-menu {
+    max-height: 100px;
+    overflow-y: scroll;
+}
+.list-item.barcode {
+    list-style: none;
+    font-weight: bold;
+    font-size: .9rem;
+    cursor: pointer;
+}
+.list-item.barcode:hover {
+    color: red;
+}
+#add-varietie {
+    cursor: pointer;
+    margin: 10px auto;
+    padding: 5px 30px;
+    border: 2px solid #000;
+    font-weight: 600;
+}
+#add-varietie:active {
+    background: #e5e5e5;
+    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+    -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+    box-shadow: inset 0px 0px 5px #c1c1c1;
+    outline: none;
+}
+
+#image-input-container {
+    width: 300px;
+    border: 2px solid #fff;
+    height: 150px;
+    padding: 0;
+    cursor: pointer;
+    position: relative;
+    margin: 30px 0;
+}
+#image-input-container:hover {
+    border: 2px dotted #000;
+}
+#image-input {
+    cursor: pointer;
+    position: absolute;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+
+#images-container {
+    display: flex;
+    padding: 0 30px;
+    flex-wrap: wrap;
+    margin: 30px 0;
+
+}
+#images-container img {
+    max-width: 150px;
+    object-fit: contain;
+    margin: 10px;
+    cursor: pointer;
+    transition: all 250ms ease-in-out;
+}
+#images-container img:hover {
+    transform: scale(110%);
+}
+#product-preview {
+    cursor: pointer;
+    background: #6a737b;
+    font-size: 1.1rem;
+    color: #fff;
+    padding: 1px 20px;
+    outline: none;
+    border-radius: .1rem;
+}
+#unit-1-val, #unit-2-val {
+    width: 80px;
+}
+.unit-1-field, .unit-2-field {
+    font-size: .8rem;
+}
+#unit-values-container{
+    display: none;
+}
+#unit-values-container.active {
+    display: flex;
+}
+@media screen and (max-width:1000px) {
+    main{
+        flex-direction: column;
+    }
+    
+}

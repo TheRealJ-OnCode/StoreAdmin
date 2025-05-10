@@ -1,0 +1,63 @@
+:root {
+    --fixedPadding: 30px 
+}
+
+#preview-layout {
+    display: none;
+    position: fixed;
+    background: #fff;
+    top: var(--fixedPadding);
+    bottom: var(--fixedPadding);
+    z-index: 20;
+    left: var(--fixedPadding);
+    width: calc(100% - var(--fixedPadding)*2);
+    border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+#back-to-editing, #upload-the-product {
+    padding: 2px 20px;
+    cursor: pointer;
+    border: 1px solid #b9b7b7;
+    background: transparent;
+    border-radius: .3rem;
+    font-size: 1.1rem;
+    transition: 350ms all ease-in-out;
+    position: absolute;
+    top: 20px;
+}
+#back-to-editing:hover, #upload-the-product:hover {
+    background-color: #eeeded;
+    transform: scale(110%);
+}
+#back-to-editing {
+    left: 20px;
+}
+#upload-the-product {
+    right: 20px;
+}
+#upload-the-product:hover {
+
+}
+.product-details-user-level {
+    width: 100%;
+    padding: 3px 10px;
+    display: inline-block;
+    text-align: center;
+    outline: none;
+    margin: 5px 0 0 0;
+    border: 1px solid #3174b6;
+    border-radius: 9px;
+    background-color: #fafafa;
+    color: #000000;
+    cursor: pointer;
+    transition: all 250ms ease-in-out;
+}
+
+.product-details-user-level:hover {
+    background-color: #052341;
+    color: #fff;
+}
+#button-containers {
+    position: relative;
+    height: 50px;
+}

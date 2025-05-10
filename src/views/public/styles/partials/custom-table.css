@@ -1,0 +1,28 @@
+#custom-table {
+    border: 2px solid #000;
+    margin-top: 10px;
+    display: flex;
+    width: 300px;
+    flex-direction: column;
+}
+#custom-table-header {
+    display: flex;
+    justify-content: space-between;
+}
+.custom-header-cell, .custom-cell {
+    width: 100px;
+    text-align: center;
+}
+.custom-header-cell:not(:last-child), .custom-cell:not(:last-child) {
+    border-right: 2px solid #000;
+}
+.custom-row {
+    border-top: 2px solid #000;
+    display: flex;
+    width: 100%;
+    cursor: pointer;
+}
+.custom-row:hover {
+    color: #ffff;
+    background: #000;
+}

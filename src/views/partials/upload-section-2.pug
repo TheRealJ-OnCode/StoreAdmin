@@ -1,0 +1,37 @@
+section
+    label Firma
+    select.vsx-select(id="product_company" name="product_company" title="Firma")
+        each company in product_company 
+            option(value=company)=company 
+        option(value="232644131233") Əlavə et
+    label Kategoriya
+    select.vsx-select(id="product_category" name="product_category" title="Kategoriya")
+        each category in product_category 
+            option(value=category)=category 
+        option(value="232644131233") Əlavə et
+    label Ölçü Vahidi 1
+    select.product_unit_boxes.vsx-select(id="product_unit_1" name="product_unit_1" title="Ölçü Vahidi 1")
+        each unit in product_unit 
+            option(value=unit)=unit 
+        option(value="232644131233") Əlavə et
+    label Ölçü Vahidi 2
+    select.product_unit_boxes.vsx-select(id="product_unit_2" name="product_unit_2" title="Ölçü Vahidi 1")
+        each unit in product_unit 
+            option(value=unit)=unit 
+    #unit-values-container
+        div.flex
+            input.numeric-input#unit-1-val
+            span.unit-1-field m
+        div.flex
+            input.numeric-input#unit-2-val
+            span.unit-2-field cm
+    #varieties-menu-container
+        h3.text-center Çeşidlər
+        h5.text-center Çeşidlənmə Vahidi :
+            span#variety-unit-text
+        #custom-table
+            #custom-table-header
+                .custom-header-cell Dəyəri
+                .custom-header-cell Qiyməti
+                .custom-header-cell Sayı
+            #custom-row-body

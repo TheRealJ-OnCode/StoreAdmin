@@ -1,0 +1,14 @@
+#main-img {
+    width: 100%;
+    height: 500px;
+    border: 2px solid darkred;
+}
+#sub-img-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}
+#sub-img-container img {
+    margin-top:10px;
+    cursor: pointer;
+}

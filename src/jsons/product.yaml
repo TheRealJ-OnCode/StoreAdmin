@@ -1,0 +1,15 @@
+# !General Product JSON structure
+
+{
+
+    "product_name":String,
+    "product_count":Number,
+    "product_company":String,
+    "product_category":String,
+    "product_description":String,
+    "product_images":Array,
+    "product_barcodes":Array,
+    "product_unit_1":String,
+    "product_unit_2":String"
+    
+}

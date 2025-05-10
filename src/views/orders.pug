@@ -1,0 +1,86 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        link(rel="stylesheet" href="/styles/_base.css")
+        link(rel="stylesheet" href="/styles/orders.css")
+        title Sifarişlər
+    body 
+        #event-modal
+            #event-layout 
+
+                button#continue Davam et
+        #change-status-modal
+            #change-status-layout
+                #status-text
+        #notifications
+        header 
+            nav 
+                ul#header-menu 
+                    li 
+                        a(href="/") Məhsul Yüklə
+                    li 
+                        a(href="/products") Məhsullar
+                    li.active
+                        a(href="/orders") Sifarişlər
+                    li 
+                        a(href="/") Konfiqurasiyalar
+                #user-info 
+                    span Demo User name
+        main 
+            .orders-config-section 
+                ul.orders-menu
+                    li(class=(type === 'today' ? 'active' : '')) 
+                        a(href="?type=today") Bugunki Sifarisler  
+                    li(class=(type === 'all' || !type ? 'active' : '')) 
+                        a(href="?type=all") Butun Sifarisler  
+                    li.disabled Filtrlenmis sifarisler (Disabled)
+            .orders-container
+                h3.text-center Sifariş axtar
+                input#search-order(type="search" name="order-id",placeholder = "ORD-1723554750103-7235")
+                .orders
+                    each order in orders
+                        .order(class=order.status)
+                            .order-wrapper 
+                                .order-general-details 
+                                    div.order-id=order.orderCode
+                                    div.order-totalAmount=order.totalAmount +" azn"
+                                .order-other-details
+                                    div#show-details
+                                        if order.status === 'Rejected'
+                                            | Ləğv edildi
+                                        else if order.status === 'Confirmed'
+                                            | Qəbul edildi
+                                        else if order.status === 'Pending'
+                                            | Sifariş Statusu Təsdiqlənməyib
+                                        else
+                                            | Statusu naməlumdur
+
+                                        <i class="fa-solid fa-chevron-down"></i>
+                                        .button-wrapper(data-type-orderID=order.orderCode) 
+                                            button.confirm-order Tesdiqle 
+                                            button.reject-order Legv et 
+                            .order-full-details
+                                .customer-fullname= order.customerInfo.name + " " + order.customerInfo.surname 
+                                .customer-phone=order.customerInfo.phone 
+                                .customer-basket 
+                                    each item in order.items
+                                        .basket-item 
+                                            .basket-img 
+                                                a(href="/product/view?pid="+item.productId+"&product_name="+item.name,target="_blank")
+                                                    img(src=item.img, alt=item.name) 
+                                            .basket-product-details 
+                                                .name= item.name
+                                                .key= item && item.alternativeDetails ? "Seçim: " + item.alternativeDetails.value : ""
+
+                                                .count="Sayi: " + item.quantity
+                                                .price="Qiymeti: " + item.price + " azn"
+                                                .total="Toplam: " + item.total + " azn" 
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.min.js")
+    script(src="https://cdn.jsdelivr.net/npm/sweetalert2@11")
+
+    script(type="module" src="/models/orderController.js") 
+
+

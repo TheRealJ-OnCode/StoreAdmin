@@ -1,0 +1,155 @@
+doctype html
+head
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title M&#x259;hsul Y&uuml;kl&#x259;
+    link(rel='stylesheet' href='/styles/index.css')
+#error-message
+#loader-wrapper
+    .loader
+nav.navbar
+  a(href='/') Ana S&#x259;hif&#x259;
+  a(href='/orders') Sifari&scedil;l&#x259;r
+  a(href='/products') M&#x259;hsullar
+
+main
+    #custom-form
+        h3 M&#x259;hsul Y&uuml;kl&#x259;m&#x259; Formu
+        // ! general product infos
+        .form-step
+            .form-input
+                label(for='product-name') M&#x259;hsul Ad&imath;
+                input#product-name(type='text' placeholder='Exm-1')
+            .form-input
+                label(for='product-description') M&#x259;hsul T&#x259;sviri
+                input#product-description(type='text' placeholder='Exm-1')
+            .form-input
+                label(for='product-count') M&#x259;hsul Say&imath;
+                input#product-count.numeric-input(type='number' min='1' placeholder='Exm-1')
+            .form-input
+                label(for='product-purchase-price') M&#x259;hsul Al&imath;&scedil; Qiym&#x259;ti
+                input#product-purchase-price.numeric-input(type='number' min='1' placeholder='Exm-1')
+            .form-input
+                label(for='product-sales-price') M&#x259;hsul Sat&imath;&scedil; Qiym&#x259;ti
+                input#product-sales-price.numeric-input(type='number' min='1' placeholder='Exm-1')
+            #has-alternatives-checkbox
+                input#has-alternatives(type='checkbox' name='has-alternatives')
+                label(for='has-alternatives') M&#x259;hsulun alt variantlar&imath; m&ouml;vcuddur
+            .step-buttons
+                button.next-button Ir&#x259;li
+        // ! product alternatives
+        .form-step
+            .form-input
+                label(for='product-alternative-value') Alternativ D&#x259;y&#x259;ri
+                input#product-alternative-value(type='text' min='1' placeholder='Exm-1')
+            .form-input
+                label(for='product-alternative-count') Alternativ Say&imath;
+                input#product-alternative-count.numeric-input(type='number' min='1' placeholder='Exm-1')
+            .form-input
+                label(for='product-alternative-price') Alternativ Qiym&#x259;ti
+                input#product-alternative-price.numeric-input(type='number' min='1' placeholder='Exm-1')
+            button.add-alternative-btn &#x18F;lav&#x259; et
+            .step-buttons.multiple
+                button.prev-button Geri
+                button.next-button Ir&#x259;li
+            #alternatives-container
+        // ! product categories , companies and units
+        .form-step
+            .form-select
+                label(for='product-category') Kategoriya
+                select#product-category(name='product-category')
+                    each category in product_category 
+                        option(value=category)=category 
+                button#add-category.add-option Yeni Kategoriya &#x18F;lav&#x259; et
+            .form-select
+                label(for='product-company') Firma
+                select#product-company(name='product-company')
+                    each company in product_company 
+                        option(value=company)=company 
+                button#add-company.add-option Yeni Firma &#x18F;lav&#x259; et
+            .form-select
+                label(for='product-measurement-unit-1') &Ouml;l&ccedil;&uuml; Vahidi 1
+                select#product-measurement-unit-1(name='product-measurement-unit-1')
+                    each unit in product_unit 
+                        option(value=unit)=unit 
+                button#add-measurement-unit.add-option Yeni &Ouml;l&ccedil;&uuml; Vahidi &#x18F;lav&#x259; et
+            .form-select
+                label(for='product-measurement-unit-2') &Ouml;l&ccedil;&uuml; Vahidi 2
+                select#product-measurement-unit-2(name='product-measurement-unit-2')
+                    each unit in product_unit 
+                        option(value=unit)=unit 
+            .product-measurement-unit-inputs
+                .form-input
+                    label(for='product-measurement-unit-1-value') 1.D&#x259;y&#x259;r
+                    input#product-measurement-unit-1-value.numeric-input(type='number' min='1' placeholder='Exm-1')
+                .form-input
+                    label(for='product-measurement-unit-2-value') 2.D&#x259;y&#x259;r
+                    input#product-measurement-unit-2-value.numeric-input(type='number' min='1' placeholder='Exm-1')
+            .step-buttons.multiple
+                button.prev-button Geri
+                button.next-button Ir&#x259;li
+        // ! add barcode step
+        .form-step
+            .form-input
+                label(for='product-barcodes') Barkod(lar)
+                input#product-barcodes(type='text' placeholder='Ex:9800094984984')
+            #product-barcodes-wrapper
+            .step-buttons.multiple
+                button.prev-button Geri
+                button.next-button Ir&#x259;li
+        // ! add image step
+        .form-step
+            #upload-image-container
+                label.custom-button(for='file-input') &Scedil;&#x259;kil Se&ccedil;
+                input#file-input.file-input(type='file' multiple='')
+            .step-buttons.multiple
+                button.prev-button Geri
+                button.preview-button M&#x259;hsula Bax
+            #image-preview-container
+    // ! preview container
+    #preview-container
+        button.close-preview Ba&gbreve;la
+        h2 M&#x259;hsul &Ouml;nizl&#x259;m&#x259;si
+        .preview-section
+            h3 &#x1F4CC; M&#x259;hsul M&#x259;lumatlar&imath;
+        .preview-section
+            h3 &#x1F516; Barkodlar
+            ul
+                li 123456789
+                li 987654321
+        .preview-section
+            h3 &#x1F6CD;&#xFE0F; Alternativl&#x259;r
+            table
+                thead
+                    tr
+                        th Say
+                        th Ad
+                        th Qiym&#x259;t
+                tbody
+                    tr
+                        td 3
+                        td Ya&scedil;&imath;l
+                        td 12 AZN
+                    tr
+                        td 2
+                        td Q&imath;rm&imath;z&imath;
+                        td 15 AZN
+        .preview-section
+            h3 &#x1F4F7; M&#x259;hsul &Scedil;&#x259;kill&#x259;ri
+            .preview-images
+        button.confirm-product T&#x259;sdiq
+    // ! custom prompt
+    #custom-prompt.prompt-backdrop(style='display: none;')
+        .prompt-modal
+            p#prompt-label
+                | Yeni 
+                span Exca
+                | :
+            .form-input
+                input#prompt-input(type='text' placeholder='Ex:Rand Firm')
+            .prompt-buttons
+                button#prompt-cancel L&#x259;&gbreve;v
+                button#prompt-ok &#x18F;lav&#x259;
+script(src='/scripts/state.js')
+script(src='/scripts/ui.js')
+script(src='/scripts/formManager.js')
