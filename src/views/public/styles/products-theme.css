@@ -1,0 +1,289 @@
+/* ==============================
+   0) Reset & Temel Ayarlar
+   ============================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background-color: #f4f7fa;
+  color: #333;
+  line-height: 1.5;
+}
+
+/* ==============================
+   1) Navbar
+   ============================== */
+.navbar {
+  background-color: #2c3e50;
+  justify-content: center;
+}
+.navbar a {
+  color: #ecf0f1;
+  margin: 0 12px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+.navbar a:hover,
+.navbar a.active {
+  background-color: #34495e;
+}
+
+/* ==============================
+   2) Başlık & Arama
+   ============================== */
+h2.text-center {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 1.8rem;
+  color: #2c3e50;
+}
+#search-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+#search-input {
+  width: 80%;
+  max-width: 600px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* ==============================
+   3) Ürün Kartları Grid
+   ============================== */
+#products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+  width: 90%;
+  margin: 0 auto 40px;
+}
+
+/* ==============================
+   4) Kart Stili
+   ============================== */
+.review-product.products-item {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.review-product.products-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* --- Slider Bölümü --- */
+.slider-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+.slider {
+  display: flex;
+  transition: transform 0.3s ease;
+}
+.slide {
+  min-width: 100%;
+}
+.slide img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+/* ==============================
+   5) Ürün Bilgisi
+   ============================== */
+.general-info {
+  padding: 15px;
+  flex: 1;
+}
+.general-info h4 {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  color: #2c3e50;
+}
+.general-info h5.price {
+  font-size: 1rem;
+  color: #e74c3c;
+  font-weight: 600;
+}
+.general-info h5.price span {
+  font-size: 0.85rem;
+  color: #999;
+  margin-left: 4px;
+}
+
+/* ==============================
+   6) Butonlar
+   ============================== */
+.btn-group {
+  display: flex;
+  gap: 8px;
+  padding: 12px 15px;
+}
+.btn-group > button {
+  flex: 1;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s;
+  color: #fff;
+}
+.btn-group > button.product-detailed-info {
+  background-color: #3498db;
+}
+.btn-group > button.delete-product {
+  background-color: #e74c3c;
+}
+.btn-group > button.add-product {
+  background-color: #2ecc71;
+}
+/* Altındaki <a> öğesini de tam doldursun */
+.btn-group > button a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+  padding: 8px;
+}
+
+/* ==============================
+   7) Custom Prompt (Silme Onayı)
+   ============================== */
+#custom-prompt {
+  background-color: rgba(0,0,0,0.7) !important;
+}
+#custom-prompt-layout {
+  border-radius: 8px !important;
+  padding: 25px 30px !important;
+}
+#btn-group button.confirm {
+  background-color: #27ae60 !important;
+}
+#btn-group button.cancel {
+  background-color: #c0392b !important;
+}
+
+/* ==============================
+   8) Responsive Ayarlar
+   ============================== */
+/* Tablet’e kadar */
+@media (max-width: 1024px) {
+  #products {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+/* Mobil orta */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+  }
+  #search-input {
+    width: 90%;
+  }
+  .slide img {
+    height: 140px;
+  }
+  .general-info h4 {
+    font-size: 1rem;
+  }
+  .general-info h5.price {
+    font-size: 0.9rem;
+  }
+}
+
+/* Küçük mobil */
+@media (max-width: 480px) {
+  #products {
+    grid-template-columns: 1fr;
+  }
+  .slide img {
+    height: 200px;
+  }
+  .btn-group {
+    flex-direction: column;
+  }
+  .btn-group > button {
+    padding: 6px 0;
+    font-size: 0.9rem;
+  }
+}
+/* -----------------------------------
+   9) Buton Gruplarında Düzeltmeler
+----------------------------------- */
+.btn-group {
+  display: flex;
+  gap: 8px;                /* Butonlar arasında boşluk */
+  flex-wrap: wrap;         /* Dar ekranda alt alta inebilirler */
+}
+
+.btn-group > button {
+  flex: 1;                 /* Eşit genişlik */
+  display: flex;
+  align-items: center;     /* Dikey ortala */
+  justify-content: center; /* Yatay ortala */
+  padding: 10px 0;         /* Y ekseninde alan bırak */
+  white-space: nowrap;     /* Yazı sarmasını önle */
+  border-radius: 4px;
+}
+
+/* İçindeki <a> artık sadece tıklanabilir içerik, kendi padding'ini sıfırlıyoruz */
+.btn-group > button > a {
+  display: inline;         /* artık block değil */
+  width: auto;
+  height: auto;
+  padding: 0;
+  color: inherit;          /* Buton rengini miras al */
+  text-decoration: none;
+}
+
+/* Eğer hala dar ekranda çok kalabalıksa, 480px altına düşelim: */
+@media (max-width: 480px) {
+  .btn-group {
+    flex-direction: column;
+  }
+  .btn-group > button {
+    width: 100%;
+  }
+}
+/* 1) Absolute’ı devreden çıkar */
+.btn-group > button {
+  position: static !important;
+  overflow: visible !important;
+}
+
+/* 2) Anchor’ı (linki) normal flow’a al */
+.btn-group > button > a {
+  position: static !important;
+}
+/* 3) <a> tüm buton alanına yayılsın */
+.btn-group > button {
+  padding: 0;               /* artık padding’i <a> verecek */
+}
+
+.btn-group > button > a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 8px 12px;        /* buton içi boşluk */
+  text-decoration: none;
+  color: inherit;
+}

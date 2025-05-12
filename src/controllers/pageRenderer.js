@@ -169,12 +169,15 @@ const refreshOrdersController = async (req, res) => {
 
 
 
-
 const demoProductDetailsRenderer = async (req, res) => {
+  const product = req.query;
+  return res.render("product-details", {
+    product,
+    pageTitle: `Detallar || ${product.product_name}`,
+    activePage: "Məhsullar"
+  });
+};
 
-
-    return res.render("product-details", { product: req.query, pageTitle: `Detallar || ${req.query.product_name}` })
-}
 
 
 

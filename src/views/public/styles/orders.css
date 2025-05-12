@@ -1,306 +1,441 @@
+/* ------------------------------------------------------------------
+   0) Reset & Temel Ayarlar
+------------------------------------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background-color: #f4f7fa;
+  color: #333;
+  line-height: 1.5;
+}
+
+/* ------------------------------------------------------------------
+   1) Header & Nav
+------------------------------------------------------------------- */
 header {
-    height: 80px;
-    background-color: #eee;
-    width: 100%;
+  background-color: #2c3e50;
+  height: 80px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
-
 nav {
-    width: 100%;
-    justify-content: space-between;
-    height: 100%;
-    align-items: center;
-    display: flex;
-
-    #user-info {
-        padding: 0 10px;
-    }
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
 }
-
 #header-menu {
-    display: flex;
-
-    li {
-        line-height: 80px;
-        text-align: center;
-        list-style: none;
-        padding: 0 10px;
-
-        a {
-            color: #000;
-        }
-    }
-
-    li.active a {
-        color: darkgreen;
-    }
-
-    li:hover a {
-        color: red;
-    }
+  display: flex;
+  list-style: none;
+}
+#header-menu li {
+  margin-right: 20px;
+}
+#header-menu li a {
+  color: #ecf0f1;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background 0.3s, color 0.3s;
+}
+#header-menu li a:hover {
+  background-color: #34495e;
+}
+#header-menu li.active a {
+  background-color: #3498db !important;
+  color: #fff !important;
+}
+#user-info span {
+  color: #ecf0f1;
+  font-size: 0.9rem;
 }
 
+/* ------------------------------------------------------------------
+   2) Ana İçerik (Main)
+------------------------------------------------------------------- */
 main {
-    display: flex;
-    width: 100%;
-
-    .orders-config-section {
-        width: 250px;
-        border-right: 2px solid #eee;
-        height: calc(100vh - 80px);
-
-        .orders-menu {
-            li {
-                width: 100%;
-                height: 50px;
-                line-height: 50px;
-                text-align: center;
-                border-bottom: 1px solid #aaa;
-                cursor: pointer;
-
-                a {
-                    display: block;
-                    width: 100%;
-                    height: 50px;
-                    color: #000;
-                }
-            }
-
-            li.active {
-                background-color: #000;
-
-                a {
-                    color: #ffff;
-                }
-            }
-
-            li:hover:not(.disabled) {
-                background-color: #656363;
-            }
-        }
-    }
-
-    .orders-container {
-        width: calc(100% - 250px);
-
-        h3 {
-            margin: 20px 20px 10px 20px;
-        }
-
-        #search-order {
-            display: block;
-            margin: 0 auto 30px auto;
-            width: 80%;
-            height: 30px;
-            color: #000;
-            padding: 10px;
-            font-size: 1.1rem;
-        }
-
-        .orders {
-            margin-top: 20px;
-
-            .order {
-                cursor: pointer;
-                padding: 10px 30px;
-                width: 90%;
-                background-color: #cfcece;
-                margin: 10px auto;
-
-
-                .order-wrapper {
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-
-                    .order-general-details {
-                        .order-id {
-                            font-weight: bold;
-                        }
-
-                        .order-totalAmount {
-                            font-style: italic;
-                            color: red;
-                        }
-                    }
-
-                    .order-other-details {
-                        #show-details {
-                            padding: 3px 20px;
-                            height: 30px;
-                            background-color: #fff;
-                            cursor: pointer;
-                            border: none;
-                            outline: none;
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            position: relative;
-
-                            i {
-                                padding: 0 0 0 5px;
-                            }
-
-                            .button-wrapper {
-                                background-color: #939393;
-                                position: absolute;
-                                flex-direction: column;
-                                display: none;
-                                top: 30px;
-                                width: 100%;
-
-                                button {
-                                    z-index: 3;
-                                    width: 100%;
-                                    outline: none;
-                                    height: 30px;
-                                    padding: 2px 0;
-                                    border: none;
-                                    font-weight: bold;
-                                    cursor: pointer;
-                                }
-
-                                .reject-order {
-                                    background-color: #ed2939;
-                                    color: #fff;
-                                }
-
-                                .confirm-order {
-                                    background-color: rgb(10, 154, 22);
-                                }
-                            }
-
-                            .button-wrapper.active {
-                                display: flex;
-                            }
-                        }
-                    }
-                }
-
-                .order-full-details {
-                    height: 0px;
-                    overflow-y: scroll;
-                    background-color: #fafafa;
-
-                    .customer-fullname,
-                    .customer-phone {
-                        font-weight: bold;
-                        margin: 5px 0;
-                        font-size: 1.1rem;
-                    }
-                }
-
-                .order-full-details.active {
-                    height: 300px;
-                }
-
-                .customer-basket {
-                    .basket-item {
-                        .basket-img {
-                            img {
-                                height: 150px;
-                                object-fit: contain;
-                            }
-                        }
-                    }
-
-                    display: grid;
-                    grid-template-columns: repeat(5, 1fr);
-                    gap: 10px;
-                }
-            }
-
-            .order.Rejected {
-                background-color: #7a0811;
-            }
-
-            .order.Confirmed {
-                background-color: #00FF00;
-            }
-
-            .order:hover {
-                background-color: #939393;
-            }
-
-        }
-    }
+  max-width: 1200px;
+  margin: 20px auto;
+  display: flex;
+  gap: 20px;
 }
 
-.disabled {
-    background-color: rgb(235, 235, 228);
+/* --- Sol Menü --- */
+.orders-config-section {
+  background-color: #ecf0f1;
+  width: 250px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.orders-config-section .orders-menu li {
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  transition: background 0.3s;
+}
+.orders-config-section .orders-menu li a {
+  color: #2c3e50;
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+}
+.orders-config-section .orders-menu li:hover:not(.disabled) {
+  background-color: #d0dbe5;
+}
+.orders-config-section .orders-menu li.active {
+  background-color: #3498db;
+}
+.orders-config-section .orders-menu li.active a {
+  color: #fff;
+}
+.orders-config-section .orders-menu li.disabled {
+  color: #aaa;
+  cursor: not-allowed;
 }
 
-
-
-#event-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #000000e6;
-    z-index: 7;
-
-    #event-layout {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        button#continue {
-            padding: 15px 20px;
-            border-radius: .5rem;
-            font-size: 1.1rem;
-            cursor: pointer;
-            font-weight: 600;
-        }
-    }
+/* --- Sağ İçerik --- */
+.orders-container {
+  flex: 1;
+  padding: 0 10px;
+}
+.orders-container h3 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+#search-order {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 30px;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  display: block;
+  font-size: 1rem;
 }
 
+/* ------------------------------------------------------------------
+   3) Sipariş Kartları
+------------------------------------------------------------------- */
+.orders .order {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.orders .order:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.order-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.order-general-details .order-id {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+.order-general-details .order-totalAmount {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #e74c3c;
+}
+
+/* --- Durum Butonu --- */
+.order-other-details #show-details {
+  background-color: #3498db;
+  color: #fff;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  position: relative;
+  transition: background 0.3s;
+}
+.order-other-details #show-details:hover {
+  background-color: #2980b9;
+}
+.order-other-details #show-details i {
+  margin-left: 8px;
+  transition: transform 0.3s;
+}
+/* ikon dönüşü (açıldıysa) */
+.order-full-details.active
+  ~ .order-wrapper
+  .order-other-details #show-details i {
+  transform: rotate(180deg);
+}
+
+/* --- Aksiyon Butonları --- */
+.order-other-details .button-wrapper {
+  background-color: #ecf0f1;
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  width: 100%;
+  border-radius: 4px;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+}
+.order-other-details .button-wrapper.active {
+  display: flex;
+}
+.button-wrapper button {
+  padding: 8px 0;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.button-wrapper .confirm-order {
+  background-color: #2ecc71;
+  color: #fff;
+}
+.button-wrapper .reject-order {
+  background-color: #e74c3c;
+  color: #fff;
+}
+
+/* ------------------------------------------------------------------
+   4) Detay Açılır Kısım
+------------------------------------------------------------------- */
+.order-full-details {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  background-color: #fafafa;
+  margin-top: 10px;
+  border-radius: 4px;
+  padding: 0 15px;
+}
+.order-full-details.active {
+  max-height: 600px;
+  padding: 15px;
+}
+
+/* müşteri bilgisi */
+.customer-fullname,
+.customer-phone {
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 5px 0;
+}
+
+/* sepet ürünleri */
+.customer-basket {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+.basket-item {
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.basket-img img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}
+.basket-product-details {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.basket-product-details .name {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+.basket-product-details .key {
+  font-style: italic;
+  color: #7f8c8d;
+}
+.basket-product-details .count,
+.basket-product-details .price,
+.basket-product-details .total {
+  font-size: 0.85rem;
+  color: #34495e;
+}
+
+/* ------------------------------------------------------------------
+   5) Modallar (Etkinlik & Durum Değiştirme)
+------------------------------------------------------------------- */
+#event-modal,
 #change-status-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #000000e6;
-    z-index: 7;
-    display: none;
-    justify-content: center;
-    align-items: center;
-
-    #change-status-layout {
-        background-color: #fff;
-        padding: 10px 30px;
-
-        #cr-button-wrapper {
-            width: 100%;
-            margin-top: 20px;
-            display: flex;
-            justify-content: space-between;
-
-            button {
-                padding: 5px 30px;
-                margin: 0 20px;
-                color: #fff;
-                outline: none;
-                border: none;
-                border-radius: .5rem;
-            }
-
-            #confirm-btn {
-                background-color: #14c320e6;
-            }
-
-            #reject-btn {
-                background-color: #7a0811;
-            }
-        }
-    }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0,0,0,0.7);
+  z-index: 1000;
+}
+#change-status-modal {
+  display: none; /* JS ile açılıyor */
+}
+#event-layout button#continue {
+  background-color: #3498db;
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  transition: background 0.3s;
+}
+#event-layout button#continue:hover {
+  background-color: #2980b9;
+}
+#change-status-layout {
+  background-color: #ecf0f1;
+  padding: 20px;
+  border-radius: 4px;
+  min-width: 300px;
+}
+#cr-button-wrapper {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+#change-status-layout button#confirm-btn,
+#change-status-layout button#reject-btn {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  color: #fff;
+  transition: background 0.3s;
+}
+#change-status-layout button#confirm-btn {
+  background-color: #2ecc71;
+}
+#change-status-layout button#reject-btn {
+  background-color: #e74c3c;
 }
 
+/* ------------------------------------------------------------------
+   6) Küçük Dokunuşlar
+------------------------------------------------------------------- */
+.disabled {
+  opacity: 0.6;
+}
 .key {
-    font-style: italic;
-    font-weight: bold;
-    color: green;
+  /* eskiden yeşil italikti, biz onu da stilledik: */
+  font-style: normal;
+  font-weight: 600;
+  color: #16a085;
 }
+/* -----------------------------------
+   7) Responsive Ayarlar
+----------------------------------- */
+
+/* --- Tablet ve altı (max-width: 1200px) --- */
+@media (max-width: 1200px) {
+  main {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  /* Sol menüyü yukarı taşı */
+  .orders-config-section {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0 0 8px 8px;
+  }
+
+  /* İçerik altına kaydır */
+  .orders-container {
+    width: 100%;
+    padding: 0;
+  }
+
+  /* Search çubuğu tam genişlik */
+  #search-order {
+    max-width: 100%;
+  }
+}
+
+/* --- Mobil (max-width: 768px) --- */
+@media (max-width: 768px) {
+  /* Header menüyü düşey yap, kaydırılabilir */
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+  }
+  #header-menu {
+    width: 100%;
+    overflow-x: auto;
+  }
+  #header-menu li {
+    flex: 0 0 auto;
+    margin-right: 10px;
+  }
+
+  /* Kart padding ve fontları küçült */
+  .orders .order {
+    padding: 10px;
+  }
+  .order-general-details .order-id {
+    font-size: 1rem;
+  }
+  .order-general-details .order-totalAmount {
+    font-size: 0.9rem;
+  }
+
+  /* Basket grid adaptasyonu */
+  .customer-basket {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+
+  /* Modal içeriği tam genişlik */
+  #change-status-layout,
+  #event-layout > button#continue {
+    width: calc(100% - 40px);
+    max-width: 400px;
+  }
+}
+
+/* --- Küçük Mobil (max-width: 480px) --- */
+@media (max-width: 480px) {
+  /* Nav yazı boyutu */
+  #header-menu li a {
+    font-size: 0.9rem;
+    padding: 6px 8px;
+  }
+
+  /* Butonlar ve ikonlar biraz daha ufak */
+  .order-other-details #show-details {
+    padding: 6px 10px;
+    font-size: 0.9rem;
+  }
+  .button-wrapper button {
+    padding: 6px 0;
+    font-size: 0.85rem;
+  }
+}
+
+
+

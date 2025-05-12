@@ -1,74 +1,82 @@
+-
+  const navItems = [
+    { href: '/',        label: 'Ana Səhifə'  },
+    { href: '/orders',  label: 'Sifarişlər'   },
+    { href: '/products',label: 'Məhsullar'    },
+  ];
+
+nav.navbar
+  each item in navItems
+    a(
+      href=item.href
+      class=(item.label === activePage ? 'active' : '')
+    )= item.label
+
+
 doctype html
 html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(name="viewport" content="width=device-width, initial-scale=1.0")
-        link(rel='shortcut icon' href='/images/favicon.png' type='image/x-icon')
-        link(rel='stylesheet' href='/styles/vendor/bootstrap/bootstrap.min.css')
-        link(rel='stylesheet' href='/styles/vendor/font-awesome/all.min.css')
-        link(rel='stylesheet' href='/styles/vendor/font-awesome/sharp-regular.min.css')
-        link(rel='stylesheet' href='/styles/vendor/font-awesome/sharp-solid.min.css')
-        link(rel='stylesheet' href='/styles/vendor/modal-video/modal-video.min.css')
-        link(rel='stylesheet' href='/styles/vendor/mean-menu/meanmenu.min.css')
-        link(rel='stylesheet' href='/styles/vendor/owl-carousel/owl.carousel.min.css')
-        link(rel='stylesheet' href='/styles/vendor/slick/slick.css')
-        link(rel='stylesheet' href='/styles/vendor/nice-select/nice-select.css')
-        link(rel='stylesheet' href='/styles/product-details.css')
-        link(rel='stylesheet' href='/styles/product-details-custom.css')
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(rel='shortcut icon' href='/images/favicon.png' type='image/x-icon')
+    //— özel stiller
+    link(rel='stylesheet' href='/styles/product-details-custom.css')
+    title= pageTitle
 
-
-        title #{pageTitle}
-
-    body
-        section.fz-product-details
-          .container
-            .row.align-items-start.justify-content-center
-              .col-lg-5.col-md-6.col-12.col-xxs-12
-                #product_details_img
-                  #main-img
-                    img(src=product.product_images[0] alt = "Product Image")
-                  #sub-img-container
-                      each img in product.product_images
-                        img(src=img alt='Product Image')
+  body
 
 
 
-              .col-lg-7.col-md-6
-                .fz-product-details__txt
-                  h2.fz-product-details__title=product.product_name
-                  .fz-product-details__price-rating
-                    span.price=product.product_sales_price +  " azn"
-                    .rating
-                      i.fa-light.fa-sharp.fa-star
-                      i.fa-light.fa-sharp.fa-star
-                      i.fa-light.fa-sharp.fa-star
-                      i.fa-light.fa-sharp.fa-star
-                      i.fa-light.fa-sharp.fa-star
-                  .fz-product-details__infos
-                    ul
-                      li
-                        span.info-property Barkod |  :
-                        span.info-value= product.product_barcode
-                      li
-                        span.info-property Kategoriya |  :
-                        span.info-value=product.product_category
-                      li
-                        span.info-property  Stokda var | :
-                        span.info-value=product.inStock ? " "+"var" : "yoxdur"
-                  p.fz-product-details__short-descr
-                    =product.product_description
-                  .fz-product-details__actions
-                    .fz-product-details__quantity.cart-product__quantity
-                      button.minus-btn.cart-product__minus
-                        i.fa-light.fa-minus
-                      input#product-quantity-input.cart-product-quantity-input(readonly='' type='number' name='product-quantity' value='1')
-                      button.plus-btn.cart-product__plus
-                        i.fa-light.fa-plus
-                    button.fz-product-details__add-to-cart Add to cart
-                    button.fz-product-details__add-to-wishlist
-                      i.fa-light.fa-heart
+    section.fz-product-details
+      .container
+        .row.flex-lg-row.flex-column-reverse.align-items-start.gap-4
 
+          //— Soldaki görsel alanı
+          .col-lg-5.col-md-6
+            .gallery
+              #main-img
+                img(src=product.product_images[0] alt=product.product_name)
+              #thumbs
+                each imgUrl in product.product_images
+                  .thumb
+                    img(src=imgUrl alt=product.product_name)
 
+          //— Sağdaki metin alanı
+          .col-lg-7.col-md-6
+            .details
+              h1.details__title= product.product_name
+              .details__price-rating
+                span.details__price= product.product_sales_price + ' azn'
+                .details__rating
+                  //– örnek 5 yıldız
+                  i.fa.fa-star
+                  i.fa.fa-star
+                  i.fa.fa-star
+                  i.fa.fa-star
+                  i.fa.fa-star-half-alt
 
+              ul.details__info
+                li
+                  span.property Barkod:
+                  span.value= product.product_barcode
+                li
+                  span.property Kategoriya:
+                  span.value= product.product_category
+                li
+                  span.property Stok:
+                  span.value= product.inStock ? 'Var' : 'Yoxdur'
 
-                        
+              p.details__description= product.product_description
+
+              .details__actions
+                .quantity-control
+                  button.minus(type="button") −
+                  input(type="number" readonly value="1")
+                  button.plus(type="button") +
+                button.add-to-cart(type="button") 
+                  i.fa.fa-shopping-cart
+                  |  Səbətə əlavə et
+                button.wishlist(type="button")
+                  i.fa.fa-heart
+
+    //— istersen footer vs. ekle
